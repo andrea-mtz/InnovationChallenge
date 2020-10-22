@@ -6,7 +6,7 @@ int main(int argc, char* argv[])
 	SACommandcmd; // create command object
 	try
 	{
-		// connect to database (Oracle in our example)
+		// connect to Oracle database 
 		con.Connect("test", "tester", "tester", SA_Oracle_Client);
 
 		// associate a command with connection
@@ -18,10 +18,17 @@ int main(int argc, char* argv[])
 		cmd.Execute();
 
 		// insert value
-		cmd.setCommandText("Insert into 787-8(id, interior,) values (1,”Vinay”)");
-		cmd.setCommandText("Insert into tbl(id, interior) values (2,”Kushal”)");
-		cmd.setCommandText("Insert into tbl(id, interior) values (3,”Saransh”)");
+		cmd.setCommandText("Insert into BOEING(id, interior, seatWidth, totseatWidth, pitch) values (787-8-0-1, 139.2, 20.5, 20.5, 78.0)");
+		cmd.setCommandText("Insert into BOEING(id, interior, seatWidth, totseatWidth, pitch) values (787-8-0-2, 139.2, 20.5, 41.0, 78.0)");
+
+		cmd.setCommandText("Insert into BOEING(id, interior, seatWidth, totseatWidth, pitch) values (787-8-1-2, 139.2, 19.0, 19.0, 38.0)");
+        	cmd.setCommandText("Insert into BOEING(id, interior, seatWidth, totseatWidth, pitch) values (787-8-1-3, 139.2, 19.0, 38.0, 38.0)");
+
+		cmd.setCommandText("Insert into BOEING(id, interior, seatWidth, totseatWidth, pitch) values (787-8-2, 139.2, 17.3, 51.9, 34.0)");
+		cmd.setCommandText("Insert into BOEING(id, interior, seatWidth, totseatWidth, pitch) values (787-8-3, 139.2, 17.3, 51.9, 31.0)");
+
 		cmd.Execute();
+
 
 		// commit changes on success
 		con.Commit();
