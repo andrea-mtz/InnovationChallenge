@@ -1,0 +1,258 @@
+//digital pins out
+
+const int leftfMotor1 = 2;
+const int leftbMotor1 = 3;
+
+const int leftfMotor2 = 4;
+const int leftbMotor2 = 5;
+
+const int leftfMotor3 = 6;
+const int leftbMotor3 = 7;
+
+const int leftfMotor4 = 8;
+const int leftbMotor4 = 9;
+
+
+//distance sensors
+
+const int sensor1 = 10;
+const int sensor2 = 11;
+
+int switchPin = 12;             //switch to turn the robot on and off
+float distance = 0;            //variable to store the distance measured by the distance sensor
+
+
+void setup()
+{
+  pinMode(leftfMotor1, OUTPUT);
+  pinMode(leftbMotor1, OUTPUT);
+  
+  pinMode(leftfMotor2, OUTPUT);
+  pinMode(leftbMotor2, OUTPUT);
+  
+  pinMode(leftfMotor3, OUTPUT);
+  pinMode(leftbMotor3, OUTPUT);
+  
+  pinMode(leftfMotor4, OUTPUT);
+  pinMode(leftbMotor4, OUTPUT);
+
+void loop() //run forward
+{
+
+  digitalWrite(leftfMotor1, HIGH);
+  digitalWrite(leftbMotor1, LOW);
+
+  digitalWrite(leftfMotor2, HIGH);
+  digitalWrite(leftbMotor2, LOW);
+  
+  digitalWrite(leftfMotor3, HIGH);
+  digitalWrite(leftbMotor3, LOW);
+  
+  digitalWrite(leftfMotor4, HIGH);
+  digitalWrite(leftbMotor4, LOW);
+  
+  
+    //DETECT THE DISTANCE READ BY THE DISTANCE SENSOR
+  distance = getDistance();
+
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" in");              // print the units
+
+  if (digitalRead(switchPin) == LOW) { //if the on switch is flipped
+
+    if (distance < 10) {              //if an object is detected
+      //back up and turn
+      Serial.print(" ");
+      Serial.print("BACK!");
+
+      //stop for a moment
+      leftfMotor1(0);
+      leftbMotor1(0);
+      delay(200);
+
+      //back up
+      leftfMotor1(-255);
+      leftbMotor1(-255);
+      delay(backupTime);
+
+      //turn away from obstacle
+      leftfMotor1(255);
+      leftMotor1(-255);
+      delay(turnTime);
+
+    } else {                        //if no obstacle is detected drive forward
+      Serial.print(" ");
+      Serial.print("Moving...");
+
+
+      leftfMotor1(255);
+      leftbMotor1(255);
+    }
+  } else {                        //if the switch is off then stop
+
+    //stop the motors
+    leftfMotor1(0);
+    leftbMotor1(0);
+  }
+
+  delay(50);                      //wait 50 milliseconds between readings
+
+}
+
+
+}		//void loop end
+
+motor 2 goes counterclockwise
+motor 1 goes clockwise
+
+
+****************************************************************************
+//digital pins out
+
+//front wheels
+const int leftfMotor1 = 2;
+const int leftbMotor1 = 3;
+
+const int leftfMotor2 = 4;
+const int leftbMotor2 = 5;
+
+
+//back wheels
+const int leftfMotor3 = 6;
+const int leftbMotor3 = 7;
+
+const int leftfMotor4 = 8;
+const int leftbMotor4 = 9;
+
+
+//distance sensors
+
+const int sensor1 = 10;
+const int sensor2 = 11;
+
+int switchPin = 12;             //switch to turn the robot on and off
+float distance = 0;            //variable to store the distance measured by the distance sensor
+
+
+void setup()
+{
+  pinMode(leftfMotor1, OUTPUT);
+  pinMode(leftbMotor1, OUTPUT);
+  
+  pinMode(leftfMotor2, OUTPUT);
+  pinMode(leftbMotor2, OUTPUT);
+  
+  pinMode(leftfMotor3, OUTPUT);
+  pinMode(leftbMotor3, OUTPUT);
+  
+  pinMode(leftfMotor4, OUTPUT);
+  pinMode(leftbMotor4, OUTPUT);
+
+void loop() //run forward
+{
+  //DETECT THE DISTANCE READ BY THE DISTANCE SENSOR
+  distance = getDistance();
+  
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" in");              // print the units
+
+  if (digitalRead(switchPin) == LOW) { //if the on switch is flipped
+
+    if (distance < 10) {              //if an object is detected
+      //back up and turn
+      Serial.print(" ");
+      Serial.print("BACK!");
+
+      //stop for a moment
+  digitalWrite(leftfMotor1, LOW);
+  digitalWrite(leftbMotor1, LOW);
+
+  digitalWrite(leftfMotor2, LOW);
+  digitalWrite(leftbMotor2, LOW);
+  
+  digitalWrite(leftfMotor3, LOW);
+  digitalWrite(leftbMotor3, LOW);
+  
+  digitalWrite(leftfMotor4, LOW);
+  digitalWrite(leftbMotor4, LOW);
+  
+  
+      delay(200);
+
+      //back up
+
+  digitalWrite(leftfMotor1, LOW);
+  digitalWrite(leftbMotor1, HIGH);
+
+  digitalWrite(leftfMotor2, LOW);
+  digitalWrite(leftbMotor2, HIGH);
+  
+  digitalWrite(leftfMotor3, LOW);
+  digitalWrite(leftbMotor3, HIGH);
+  
+  digitalWrite(leftfMotor4, LOW);
+  digitalWrite(leftbMotor4, HIGH);
+  
+        delay(backupTime);
+
+      //turn away from obstacle
+
+  digitalWrite(leftfMotor1, HIGH);
+  digitalWrite(leftbMotor1, LOW);
+
+  digitalWrite(leftfMotor2, HIGH);
+  digitalWrite(leftbMotor2, LOW);
+  
+  digitalWrite(leftfMotor3, HIGH);
+  digitalWrite(leftbMotor3, LOW);
+  
+  digitalWrite(leftfMotor4, HIGH);
+  digitalWrite(leftbMotor4, LOW);
+  
+        delay(turnTime);
+
+    } else {                        //if no obstacle is detected drive forward
+      Serial.print(" ");
+      Serial.print("Moving...");
+
+
+
+  digitalWrite(leftfMotor1, HIGH);
+  digitalWrite(leftbMotor1, LOW);
+
+  digitalWrite(leftfMotor2, HIGH);
+  digitalWrite(leftbMotor2, LOW);
+  
+  digitalWrite(leftfMotor3, HIGH);
+  digitalWrite(leftbMotor3, LOW);
+  
+  digitalWrite(leftfMotor4, HIGH);
+  digitalWrite(leftbMotor4, LOW);
+  
+      }
+  } else {                        //if the switch is off then stop
+
+    //stop the motors
+
+  digitalWrite(leftfMotor1, LOW);
+  digitalWrite(leftbMotor1, LOW);
+
+  digitalWrite(leftfMotor2, LOW);
+  digitalWrite(leftbMotor2, LOW);
+  
+  digitalWrite(leftfMotor3, LOW);
+  digitalWrite(leftbMotor3, LOW);
+  
+  digitalWrite(leftfMotor4, LOW);
+  digitalWrite(leftbMotor4, LOW);
+  
+    }
+
+  delay(50);                      //wait 50 milliseconds between readings
+
+}
+
+
+}		//void setup end
